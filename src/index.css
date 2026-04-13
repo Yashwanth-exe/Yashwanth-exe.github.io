@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bgd text-gray-300 font-mono overflow-x-hidden m-0 p-0;
+    /* faint, subtle engineering grid pattern */
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center top;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333333;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ff6b00;
+  }
+}
+
+@layer components {
+  /* Bento box panel base styles */
+  .bento-panel {
+    @apply bg-panel border border-border p-6 relative transition-colors duration-300 backdrop-blur-sm;
+    /* sharp corners default, no border-radius */
+  }
+
+  /* Hover state: amber border and subtle glowing box-shadow */
+  .bento-panel:hover {
+    @apply border-accent;
+    box-shadow: 0 0 10px rgba(255, 107, 0, 0.2), inset 0 0 5px rgba(255, 107, 0, 0.1);
+  }
+
+  /* Neon text utility */
+  .text-neon {
+    @apply text-accent;
+    text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
+  }
+}
