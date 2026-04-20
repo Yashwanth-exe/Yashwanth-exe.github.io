@@ -8,7 +8,7 @@ const SysAbout = () => {
       <div className="space-y-12">
         <div className="border-l-2 border-accent/30 pl-6 py-2">
           <p className="text-neutral-400 text-base leading-relaxed">
-            I am a Mechatronics and Controls Engineer specializing in precision PCB architecture, robotic actuation systems, and comprehensive hardware-software integration. From deriving kinematic EKF localization models to provisioning localized firmware for hardware-in-the-loop applications, I thrive on bridging the gap between raw silicon and physical motion.
+            I am an Electronics and Communication Engineer specializing in precision PCB architecture, robotic actuation systems, and comprehensive hardware-software integration. From deriving kinematic EKF localization models to provisioning localized firmware for hardware-in-the-loop applications, I thrive on bridging the gap between raw silicon and physical motion.
           </p>
         </div>
 

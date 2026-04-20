@@ -68,7 +68,7 @@ const SysSense = () => {
           
           {/* Experience Section */}
           <div>
-            <h3 className="text-white font-bold mb-6 tracking-widest text-sm uppercase font-display">/* Professional_Experience */</h3>
+            <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display">/* Professional_Experience */</h3>
             <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
               {experiences.map((exp, i) => (
                 <motion.div
@@ -91,7 +91,7 @@ const SysSense = () => {
 
           {/* Education Section */}
           <div>
-            <h3 className="text-white font-bold mb-6 tracking-widest text-sm uppercase font-display">/* Academic_Record */</h3>
+            <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display">/* Academic_Record */</h3>
             <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
               {education.map((edu, i) => (
                 <motion.div
@@ -120,7 +120,7 @@ const SysSense = () => {
 
         {/* Right Column: Achievements */}
         <div>
-          <h3 className="text-white font-bold mb-6 tracking-widest text-sm uppercase font-display">/* Competitive_Records */</h3>
+          <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display">/* Competitive_Records */</h3>
           <div className="flex flex-col space-y-6">
             {achievements.map((ach, i) => (
               <motion.div

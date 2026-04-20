@@ -25,7 +25,7 @@ const Telemetry = () => {
   return (
     <div className="flex flex-col h-full justify-between">
       <h2 className="text-sm text-neutral-500 tracking-widest mb-4 md:text-right md:mb-6 font-mono">[ TELEMETRY // CONTACT ]</h2>
-      <div className="flex flex-wrap md:justify-end gap-3">
+      <div className="flex flex-col md:items-end gap-3">
         {links.map((link) => (
           <a
             key={link.name}

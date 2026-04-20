@@ -5,24 +5,6 @@ import { ChevronDown, ChevronUp, ExternalLink, FileText } from 'lucide-react';
 const SysActuate = () => {
   const projects = [
     { 
-      title: "CHEST COMPRESSION BELT", 
-      subtitle: "Respiratory Gating System for Lung Cancer Therapy",
-      stack: ["PCB Design", "Octave/MATLAB", "Python"], 
-      description: "A joint project with KMC Hospital and faculty, aimed at developing a wearable chest belt that tracks patient breathing patterns during lung cancer radiotherapy. The belt collects real-time respiratory data and uses it to actuate an inflation/deflation mechanism that compensates for tumour motion caused by breathing — improving targeting precision during treatment. The ML layer for predictive pattern modeling is pending acquisition of stretch sensors and higher-resolution data.",
-      contribution: "Handled end-to-end sensor integration, embedded firmware development, and the closed-loop inflation/deflation control logic driving the actuation mechanism.",
-      patent: null,
-      color: "#ff6b00",
-    },
-    { 
-      title: "FARMBOT V1", 
-      subtitle: "Agricultural Disease Detection Robot",
-      stack: ["PCB Design", "Machine Learning", "CAD", "Controls"], 
-      description: "An autonomous ground robot developed to assist in early plant disease detection and soil health monitoring. The system integrates a camera running a leaf segmentation model followed by a plant disease classification model, alongside a 7-in-1 NPK soil sensor to capture subsurface soil parameters. The prototype was field-tested at a nursery in Delhi, where NPK data was successfully logged and disease detection was validated on tomato and bell pepper plants.",
-      contribution: "Designed and fabricated the electronics and PCB, wrote the embedded firmware, and handled full integration of the Raspberry Pi with the sensor stack and camera pipeline.",
-      patent: null,
-      color: "#22c55e",
-    },
-    { 
       title: "BIDIRECTIONAL SIGNAL ISOLATION", 
       subtitle: "Novel Optocoupler Circuit for I2C",
       stack: ["PCB Design", "LTSpice", "Arduino"], 
@@ -39,6 +21,24 @@ const SysActuate = () => {
       contribution: "Built the fuzzy logic terrain classification module from scratch, derived the initial EKF equations, derived the system state equations for familiarity with it. Made the initial testbench differential drive robot. Wrote the firmware code to get data from encoders and IMU on a teensy 4.1, wrote the code for the fuzzy system and tweaked the membership functions to get the terrain score in accordance to the actual terrain.",
       patent: "202641011673",
       color: "#a855f7",
+    },
+    { 
+      title: "CHEST COMPRESSION BELT", 
+      subtitle: "Respiratory Gating System for Lung Cancer Therapy",
+      stack: ["PCB Design", "Octave/MATLAB", "Python"], 
+      description: "A joint project with KMC Hospital and faculty, aimed at developing a wearable chest belt that tracks patient breathing patterns during lung cancer radiotherapy. The belt collects real-time respiratory data and uses it to actuate an inflation/deflation mechanism that compensates for tumour motion caused by breathing — improving targeting precision during treatment. The ML layer for predictive pattern modeling is pending acquisition of stretch sensors and higher-resolution data.",
+      contribution: "Handled end-to-end sensor integration, embedded firmware development, and the closed-loop inflation/deflation control logic driving the actuation mechanism.",
+      patent: null,
+      color: "#ff6b00",
+    },
+    { 
+      title: "FARMBOT V1", 
+      subtitle: "Agricultural Disease Detection Robot",
+      stack: ["PCB Design", "Machine Learning", "CAD", "Controls"], 
+      description: "An autonomous ground robot developed to assist in early plant disease detection and soil health monitoring. The system integrates a camera running a leaf segmentation model followed by a plant disease classification model, alongside a 7-in-1 NPK soil sensor to capture subsurface soil parameters. The prototype was field-tested at a nursery in Delhi, where NPK data was successfully logged and disease detection was validated on tomato and bell pepper plants.",
+      contribution: "Designed and fabricated the electronics and PCB, wrote the embedded firmware, and handled full integration of the Raspberry Pi with the sensor stack and camera pipeline.",
+      patent: null,
+      color: "#22c55e",
     },
     { 
       title: "VISISONICS // SPEECH AI", 
