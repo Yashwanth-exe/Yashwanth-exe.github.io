@@ -65,6 +65,9 @@
   /* Neon text utility */
   .text-neon {
     @apply text-accent;
+    text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
+  }
+
   /* Section header with line accent */
   .section-header {
     @apply text-sm text-neutral-500 tracking-widest mb-8 font-mono flex items-center gap-3;
