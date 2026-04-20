@@ -41,12 +41,12 @@ const ModalContent = ({ isOpen, onClose, className = "max-w-4xl", children }) =>
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ ease: "easeOut", duration: 0.2 }}
-              className={`pointer-events-auto bg-[#0a0a0a] border border-accent w-full max-h-[96vh] overflow-y-auto relative p-6 md:p-8 custom-scrollbar shadow-[0_0_50px_rgba(255,107,0,0.2)] ${className}`}
+              className={`pointer-events-auto bg-[#050505] border border-neutral-800 w-full max-h-[96vh] overflow-y-auto relative p-6 md:p-8 custom-scrollbar shadow-2xl ${className}`}
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 text-gray-500 hover:text-accent transition-colors bg-black border border-border p-1 hover:border-accent z-[120]"
+                className="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors bg-black border border-neutral-800 p-1 hover:bg-neutral-900 z-[120]"
                 aria-label="Close modal"
               >
                 <X size={20} />

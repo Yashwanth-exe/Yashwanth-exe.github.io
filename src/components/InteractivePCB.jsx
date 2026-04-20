@@ -5,52 +5,74 @@ const InteractivePCB = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    canvas.width = width;
-    canvas.height = height;
-
-    const mouse = { x: -1000, y: -1000 };
-    // Maintain a consistent density across monitors. Decreased divisor massively increases overall route density.
-    const traceCount = Math.floor((width * height) / 9000); 
+    let mouse = { x: -1000, y: -1000 };
     let traces = [];
+    let traceCount = 0;
 
-    const generateTraces = () => {
+    const generateSingleTrace = () => {
+      // Spawn trace randomly anywhere across the full scrollable height
+      let x = (Math.random() - 0.2) * (width * 1.4);
+      let y = (Math.random() - 0.2) * (height * 1.4);
+      
+      const points = [{ x, y }];
+      const segments = 2 + Math.floor(Math.random() * 5); 
+      
+      let currentAngle = (Math.floor(Math.random() * 8) * 45) * (Math.PI / 180);
+      
+      for (let j = 0; j < segments; j++) {
+        const len = 40 + Math.random() * 150;
+        x += Math.cos(currentAngle) * len;
+        y += Math.sin(currentAngle) * len;
+        points.push({ x, y });
+
+        const turn = (Math.random() > 0.5 ? 45 : 90) * (Math.random() > 0.5 ? 1 : -1);
+        currentAngle += turn * (Math.PI / 180);
+      }
+      
+      // Extremely slow sub-pixel drifting drift velocity (alive feeling)
+      const driftAngle = Math.random() * Math.PI * 2;
+      const speed = 0.05 + Math.random() * 0.15;
+      
+      return { 
+        points, 
+        baseOpacity: 0.05 + Math.random() * 0.15,
+        strokeWidth: Math.random() > 0.85 ? 2.5 : 1,
+        dx: Math.cos(driftAngle) * speed,
+        dy: Math.sin(driftAngle) * speed
+      };
+    };
+
+    const initializeTraces = () => {
+      traceCount = Math.floor((width * Math.max(height, window.innerHeight)) / 12000); 
       traces = [];
       for (let i = 0; i < traceCount; i++) {
-        let x = Math.random() * width;
-        let y = Math.random() * height;
-        const points = [{ x, y }];
-        const segments = 2 + Math.floor(Math.random() * 5); // 2 to 6 segments
-        
-        let currentAngle = (Math.floor(Math.random() * 8) * 45) * (Math.PI / 180);
-        
-        for (let j = 0; j < segments; j++) {
-          const len = 40 + Math.random() * 150;
-          x += Math.cos(currentAngle) * len;
-          y += Math.sin(currentAngle) * len;
-          points.push({ x, y });
-
-          // Next segment usually turns 45 or 90 degrees to mimic real PCB vias/traces
-          const turn = (Math.random() > 0.5 ? 45 : 90) * (Math.random() > 0.5 ? 1 : -1);
-          currentAngle += turn * (Math.PI / 180);
-        }
-        
-        traces.push({ 
-          points, 
-          baseOpacity: 0.05 + Math.random() * 0.15,
-          strokeWidth: Math.random() > 0.85 ? 2.5 : 1 // Occasional power/ground thick traces
-        });
+        traces.push(generateSingleTrace());
       }
     };
 
-    generateTraces();
+    const handleResize = () => {
+      width = document.body.scrollWidth || window.innerWidth;
+      height = document.body.scrollHeight || window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      initializeTraces();
+    };
 
-    // Helper: Distance from a point to a line segment
+    handleResize();
+
+    // Use ResizeObserver to detect when React expands the DOM
+    const resizeObserver = new ResizeObserver(() => {
+        handleResize();
+    });
+    resizeObserver.observe(document.body);
+
     const pointToLineDistance = (px, py, x1, y1, x2, y2) => {
       const A = px - x1;
       const B = py - y1;
@@ -83,9 +105,26 @@ const InteractivePCB = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      traces.forEach(trace => {
+      let regenIndices = [];
+
+      traces.forEach((trace, index) => {
+        let isOffScreen = true;
         let minDistance = Infinity;
-        // Calculate shortest distance from mouse to any segment of this trace
+
+        // Update trace positions for drift and check bounds & mouse distance
+        trace.points.forEach(p => {
+           p.x += trace.dx;
+           p.y += trace.dy;
+           if (p.x > -200 && p.x < width + 200 && p.y > -200 && p.y < height + 200) {
+              isOffScreen = false;
+           }
+        });
+
+        if (isOffScreen) {
+           regenIndices.push(index);
+           return; 
+        }
+
         for (let i = 0; i < trace.points.length - 1; i++) {
           const d = pointToLineDistance(
             mouse.x, mouse.y, 
@@ -95,25 +134,22 @@ const InteractivePCB = () => {
           if (d < minDistance) minDistance = d;
         }
 
-        // Active Signal logic - Glow if hovered closely
         let opacity = trace.baseOpacity;
         let isGlowing = false;
         
-        // Glow radius of 120 pixels
         if (minDistance < 120) {
            const intensity = Math.pow(1 - (minDistance / 120), 1.5); 
-           opacity = trace.baseOpacity + (intensity * 0.85); // Spike up to ~1.0 opacity
+           opacity = trace.baseOpacity + (intensity * 0.85);
            isGlowing = true;
         }
 
-        // Draw trace path
+        // Draw trace line
         ctx.beginPath();
         ctx.moveTo(trace.points[0].x, trace.points[0].y);
         for (let i = 1; i < trace.points.length; i++) {
           ctx.lineTo(trace.points[i].x, trace.points[i].y);
         }
         
-        // Apply glow
         if (isGlowing) {
           ctx.shadowBlur = 15;
           ctx.shadowColor = '#ff6b00';
@@ -124,10 +160,10 @@ const InteractivePCB = () => {
         }
         
         ctx.lineWidth = trace.strokeWidth;
-        ctx.lineJoin = 'bevel'; // Sharp technical turns
+        ctx.lineJoin = 'bevel';
         ctx.stroke();
 
-        // Draw Vias (pads) at start and end of trace
+        // Draw Vias
         const drawVia = (point) => {
            ctx.beginPath();
            ctx.arc(point.x, point.y, trace.strokeWidth * 2, 0, Math.PI * 2);
@@ -138,8 +174,12 @@ const InteractivePCB = () => {
         drawVia(trace.points[0]);
         drawVia(trace.points[trace.points.length - 1]);
         
-        // Reset shadow for next iteration
         ctx.shadowBlur = 0;
+      });
+
+      // Regenerate offscreen traces
+      regenIndices.forEach(idx => {
+         traces[idx] = generateSingleTrace();
       });
 
       animationFrameId = window.requestAnimationFrame(render);
@@ -148,19 +188,11 @@ const InteractivePCB = () => {
     render();
 
     const handleMouseMove = (event) => {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
+      // Must account for window scroll when checking physical mouse mapping on absolute canvas!
+      mouse.x = event.clientX + window.scrollX;
+      mouse.y = event.clientY + window.scrollY;
     };
 
-    const handleResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      generateTraces(); // Regenerate density map on resize
-    };
-
-    // Keep mouse active when leaving window
     const handleMouseOut = () => {
         mouse.x = -1000;
         mouse.y = -1000;
@@ -175,10 +207,11 @@ const InteractivePCB = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseout', handleMouseOut);
       window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} />;
+  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }} />;
 };
 
 export default InteractivePCB;

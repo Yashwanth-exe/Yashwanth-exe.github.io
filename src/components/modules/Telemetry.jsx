@@ -16,25 +16,25 @@ const LinkedinIcon = ({ size }) => (
 
 const Telemetry = () => {
   const links = [
-    { name: "GITHUB", icon: <GithubIcon size={20} />, url: "https://github.com/Yashwanth-exe" },
-    { name: "LINKEDIN", icon: <LinkedinIcon size={20} />, url: "https://www.linkedin.com/in/yashwanthexe" },
-    { name: "EMAIL", icon: <Mail size={20} />, url: "mailto:yashwanthreddy0615@gmail.com" },
-    { name: "COMM_LINK", icon: <Phone size={20} />, url: "tel:9370109" }
+    { name: "GITHUB", icon: <GithubIcon size={18} />, url: "https://github.com/Yashwanth-exe" },
+    { name: "LINKEDIN", icon: <LinkedinIcon size={18} />, url: "https://www.linkedin.com/in/yashwanthexe" },
+    { name: "EMAIL", icon: <Mail size={18} />, url: "mailto:yashwanthreddy0615@gmail.com" },
+    { name: "COMM_LINK", icon: <Phone size={18} />, url: "tel:9370109" }
   ];
 
   return (
-    <div className="h-full flex flex-col justify-between">
-      <h2 className="text-sm text-gray-500 mb-6">[ TELEMETRY // CONTACT ]</h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-around items-center flex-grow">
+    <div className="flex flex-col h-full justify-between">
+      <h2 className="text-sm text-neutral-500 tracking-widest mb-4 md:text-right md:mb-6 font-mono">[ TELEMETRY // CONTACT ]</h2>
+      <div className="flex flex-wrap md:justify-end gap-3">
         {links.map((link) => (
           <a
             key={link.name}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 text-gray-300 hover:text-accent p-3 transition-colors border border-transparent hover:border-accent hover:border-dashed bg-black/20"
+            className="flex items-center gap-2 text-neutral-400 hover:text-accent px-4 py-2.5 transition-all duration-300 border border-neutral-800 hover:border-accent/40 hover:bg-accent/5 bg-black/40 rounded-sm group"
           >
-            {link.icon}
+            <span className="group-hover:scale-110 transition-transform duration-200">{link.icon}</span>
             <span className="tracking-widest text-xs font-bold">{link.name}</span>
           </a>
         ))}

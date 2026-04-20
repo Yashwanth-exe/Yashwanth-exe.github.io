@@ -1,69 +1,117 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import SysId from './components/modules/SysId';
-import Telemetry from './components/modules/Telemetry';
-import SysActuate from './components/modules/SysActuate';
-import SysCompute from './components/modules/SysCompute';
-import SysSense from './components/modules/SysSense';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import SectionDivider from './components/SectionDivider';
 import InteractivePCB from './components/InteractivePCB';
 
+import SysId from './components/modules/SysId';
+import Telemetry from './components/modules/Telemetry';
+import SysAbout from './components/modules/SysAbout';
+import SysSense from './components/modules/SysSense';
+import SysActuate from './components/modules/SysActuate';
+import SysCompute from './components/modules/SysCompute';
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+};
+
 function App() {
-  // Animation config
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-  };
-
   return (
-    <div className="min-h-screen p-4 md:p-8 lg:p-12 relative overflow-hidden">
-      
+    <div className="w-full relative min-h-screen">
+
+      {/* Navigation */}
+      <NavBar />
+
+      {/* Immersive Background Canvas */}
       <InteractivePCB />
 
-      {/* Main Grid Container */}
-      <motion.div 
-        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 relative z-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        
-        {/* Module 1: Top Left - SYS_ID */}
-        <motion.div variants={itemVariants} className="bento-panel col-span-1 min-h-[150px]">
-          <SysId />
+      {/* Vertical Stack Content */}
+      <div className="w-full flex flex-col items-center py-32 px-4 relative z-10">
+
+        {/* Module 1: Hero Block & Contact */}
+        <motion.div
+          id="hero"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="glass-panel flex flex-col md:flex-row items-center md:items-start justify-between gap-8 md:gap-4"
+        >
+          <div className="flex-1 w-full text-left">
+            <SysId />
+          </div>
+          <div className="w-full md:w-auto md:min-w-[300px] flex md:justify-end">
+            <Telemetry />
+          </div>
         </motion.div>
 
-        {/* Module 2: Top Right - TELEMETRY */}
-        <motion.div variants={itemVariants} className="bento-panel col-span-1 md:col-span-1 lg:col-span-2 min-h-[150px]">
-          <Telemetry />
+        <SectionDivider />
+
+        {/* Module 2: Core Directive (About) */}
+        <motion.div
+          id="about"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="glass-panel mt-16"
+        >
+          <SysAbout />
         </motion.div>
 
-        {/* Module 4: Bottom Left - SYS_COMPUTE (spanning 2 rows on large screens) */}
-        <motion.div variants={itemVariants} className="bento-panel col-span-1 lg:row-span-2 min-h-[300px]">
-          <SysCompute />
-        </motion.div>
+        <SectionDivider />
 
-        {/* Module 3: Middle - SYS_ACTUATE (spanning 2 rows on large screens) */}
-        <motion.div variants={itemVariants} className="bento-panel col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-2 min-h-[300px]">
-          <SysActuate />
-        </motion.div>
-
-        {/* Module 5: Bottom Right - SYS_SENSE */}
-        <motion.div variants={itemVariants} className="bento-panel col-span-1 md:col-span-2 lg:col-span-3 min-h-[150px]">
+        {/* Module 3: Trajectory (Experience & Education) */}
+        <motion.div
+          id="trajectory"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="glass-panel mt-16"
+        >
           <SysSense />
         </motion.div>
 
-      </motion.div>
+        <SectionDivider />
+
+        {/* Module 4: Project Archives */}
+        <motion.div
+          id="projects"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="glass-panel mt-16"
+        >
+          <SysActuate />
+        </motion.div>
+
+        <SectionDivider />
+
+        {/* Module 5: Hardware/Firmware Skills & Resume */}
+        <motion.div
+          id="skills"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="glass-panel mt-16"
+        >
+          <SysCompute />
+        </motion.div>
+
+      </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

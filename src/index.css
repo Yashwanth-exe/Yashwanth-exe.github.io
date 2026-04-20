@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-bgd text-gray-300 font-mono overflow-x-hidden m-0 p-0;
     /* faint, subtle engineering grid pattern */
     background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     background-position: center top;
   }
@@ -22,28 +26,66 @@
   }
   ::-webkit-scrollbar-thumb {
     background: #333333;
+    border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #ff6b00;
   }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(255, 107, 0, 0.3);
+    color: #fff;
+  }
 }
 
 @layer components {
-  /* Bento box panel base styles */
-  .bento-panel {
-    @apply bg-panel border border-border p-6 relative transition-colors duration-300 backdrop-blur-sm;
-    /* sharp corners default, no border-radius */
+  /* Glass panel styles with hover glow */
+  .glass-panel {
+    @apply relative transition-all duration-500 p-6 md:p-8 w-full max-w-5xl mx-auto rounded-sm;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(50, 50, 50, 0.6);
+    box-shadow: 
+      0 0 0 1px rgba(255, 107, 0, 0.0),
+      0 4px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
-  /* Hover state: amber border and subtle glowing box-shadow */
-  .bento-panel:hover {
-    @apply border-accent;
-    box-shadow: 0 0 10px rgba(255, 107, 0, 0.2), inset 0 0 5px rgba(255, 107, 0, 0.1);
+  .glass-panel:hover {
+    border-color: rgba(255, 107, 0, 0.15);
+    box-shadow: 
+      0 0 0 1px rgba(255, 107, 0, 0.05),
+      0 8px 40px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba(255, 107, 0, 0.03),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   /* Neon text utility */
   .text-neon {
     @apply text-accent;
     text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
+  }
+
+  /* Section header with line accent */
+  .section-header {
+    @apply text-sm text-neutral-500 tracking-widest mb-8 font-mono flex items-center gap-3;
+  }
+
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.2), transparent);
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #ff6b00 50%, #00d4ff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
