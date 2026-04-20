@@ -44,9 +44,9 @@ const SysId = () => {
           animation: fast-blink 1.2s infinite;
         }
         @keyframes name-shimmer {
-          0% { background-position: -200% center; filter: drop-shadow(0 0 2px rgba(255,107,0,0.1)); }
-          50% { filter: drop-shadow(0 0 12px rgba(255,107,0,0.8)); }
-          100% { background-position: 200% center; filter: drop-shadow(0 0 2px rgba(255,107,0,0.1)); }
+          0% { background-position: -200% center; filter: drop-shadow(-20px 0 10px rgba(255,107,0,0.0)); }
+          50% { filter: drop-shadow(0 0 25px rgba(255,107,0,1)); }
+          100% { background-position: 200% center; filter: drop-shadow(20px 0 10px rgba(255,107,0,0.0)); }
         }
       `}} />
 
