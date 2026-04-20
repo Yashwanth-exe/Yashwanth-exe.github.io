@@ -65,36 +65,9 @@
   /* Neon text utility */
   .text-neon {
     @apply text-accent;
-    text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
-  }
-
-  @keyframes tweak-out {
-    0%, 94%, 98%, 100% {
-      text-shadow: none;
-      color: inherit;
-      transform: none;
-    }
-    95% {
-      text-shadow: 2px 1px 4px rgba(255,107,0,0.8), -2px -1px 2px rgba(0,212,255,0.6);
-      color: #fff;
-      transform: translate(-1px, 1px) skewX(2deg);
-    }
-    96% {
-      text-shadow: none;
-      color: inherit;
-      transform: none;
-    }
-    97% {
-      text-shadow: -2px -1px 4px rgba(255,107,0,0.8);
-      color: #ffdcb0;
-      transform: translate(1px, -1px) skewX(-2deg);
-    }
-  }
-
   /* Section header with line accent */
   .section-header {
     @apply text-sm text-neutral-500 tracking-widest mb-8 font-mono flex items-center gap-3;
-    animation: tweak-out 5s infinite;
   }
 
   .section-header::after {

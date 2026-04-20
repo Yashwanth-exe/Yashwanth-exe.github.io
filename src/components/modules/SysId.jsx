@@ -44,9 +44,8 @@ const SysId = () => {
           animation: fast-blink 1.2s infinite;
         }
         @keyframes name-shimmer {
-          0% { background-position: -200% center; filter: drop-shadow(-20px 0 10px rgba(255,107,0,0.0)); }
-          50% { filter: drop-shadow(0 0 25px rgba(255,107,0,1)); }
-          100% { background-position: 200% center; filter: drop-shadow(20px 0 10px rgba(255,107,0,0.0)); }
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
       `}} />
 
@@ -66,12 +65,12 @@ const SysId = () => {
       <h1 
         className="text-5xl md:text-7xl font-bold tracking-wider mb-4 z-10 font-display"
         style={{
-          background: 'linear-gradient(90deg, #525252 0%, #a3a3a3 40%, #ff6b00 50%, #a3a3a3 60%, #525252 100%)',
+          background: 'linear-gradient(90deg, #ffffff 0%, #ffffff 40%, #ff6b00 50%, #ffffff 60%, #ffffff 100%)',
           backgroundSize: '200% auto',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-          animation: 'name-shimmer 4s ease-in-out infinite',
+          animation: 'name-shimmer 6s linear infinite',
         }}
       >
         YASHWANTH

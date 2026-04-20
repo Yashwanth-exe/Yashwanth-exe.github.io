@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ScrambleText from '../ScrambleText';
 
 const SysCompute = () => {
   const skillCategories = [
@@ -39,7 +40,7 @@ const SysCompute = () => {
       
       {/* Left Side: Categorized Skills Grid */}
       <div className="flex-1">
-        <h2 className="section-header">[ SYS_COMPUTE // HARDWARE_&_FIRMWARE ]</h2>
+        <h2 className="section-header"><ScrambleText text="[ SYS_COMPUTE // HARDWARE_&_FIRMWARE ]" /></h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((cat, catIdx) => (
             <motion.div
@@ -95,7 +96,7 @@ const SysCompute = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="border border-neutral-800 p-6 bg-black/20 text-center rounded-sm"
         >
-          <span className="text-xs text-neutral-500 block mb-6 tracking-widest uppercase">/* Offline_Archive_Access */</span>
+          <span className="text-xs text-neutral-500 block mb-6 tracking-widest uppercase"><ScrambleText text="/* Offline_Archive_Access */" /></span>
           <button className="border border-accent text-accent bg-black/40 px-6 py-4 text-sm hover:bg-accent/10 hover:text-accent transition-all duration-300 w-full flex justify-center gap-4 items-center font-bold tracking-widest rounded-sm group">
             <span>FETCH PDF_RECORD</span>
             <span className="group-hover:translate-y-0.5 transition-transform">⬇</span>

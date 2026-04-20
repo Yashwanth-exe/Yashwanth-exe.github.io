@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, ExternalLink, FileText } from 'lucide-react';
+import ScrambleText from '../ScrambleText';
 
 const SysActuate = () => {
   const projects = [
@@ -64,7 +65,7 @@ const SysActuate = () => {
 
   return (
     <div className="flex flex-col h-full font-mono">
-      <h2 className="section-header">[ SYS_ACTUATE // PROJECTS_ARCHIVE ]</h2>
+      <h2 className="section-header"><ScrambleText text="[ SYS_ACTUATE // PROJECTS_ARCHIVE ]" /></h2>
       <div className="flex flex-col space-y-8">
         {projects.map((proj, idx) => (
           <motion.div
@@ -115,7 +116,7 @@ const SysActuate = () => {
 
               {/* Synopsis */}
               <div className="mb-4">
-                <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase">/* Synopsis */</span>
+                <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase"><ScrambleText text="/* Synopsis */" /></span>
                 <AnimatePresence initial={false}>
                   <motion.div
                     initial={false}
@@ -155,7 +156,7 @@ const SysActuate = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase">/* Role_&_Execution */</span>
+                    <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase"><ScrambleText text="/* Role_&_Execution */" /></span>
                     <p className="text-neutral-400 text-sm md:text-base leading-relaxed border-l-2 pl-4 mb-2" style={{ borderColor: `${proj.color}40` }}>
                       {proj.contribution}
                     </p>
