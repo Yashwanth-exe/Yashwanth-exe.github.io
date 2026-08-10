@@ -64,7 +64,7 @@ const SysId = () => {
       <h1
         className="text-5xl md:text-7xl font-bold tracking-wider mb-4 z-10 font-display"
         style={{
-          background: `linear-gradient(90deg, var(--name-base) 0%, var(--name-base) 40%, #ff6b00 50%, var(--name-base) 60%, var(--name-base) 100%)`,
+          background: `linear-gradient(90deg, var(--name-base) 0%, var(--name-base) 40%, var(--color-accent) 50%, var(--name-base) 60%, var(--name-base) 100%)`,
           backgroundSize: '200% auto',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',

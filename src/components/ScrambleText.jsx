@@ -58,7 +58,7 @@ const ScrambleText = ({ text }) => {
   }, [isGlitching, text]);
 
   return (
-    <span className={isGlitching ? 'text-accent' : 'transition-colors duration-300'} style={isGlitching ? { textShadow: '0 0 12px rgba(255,107,0,0.8)' } : {}}>
+    <span className={isGlitching ? 'text-accent' : 'transition-colors duration-300'} style={isGlitching ? { textShadow: '0 0 12px currentColor' } : {}}>
       {displayText}
     </span>
   );

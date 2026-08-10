@@ -14,10 +14,12 @@
     --color-card-border: #262626;
     --color-strong-border: #404040;
     --color-hover-border: #525252;
+    --color-accent: #ff6b00;
+    --accent-rgb: 255 107 0;
 
     --glass-bg: rgba(10, 10, 10, 0.6);
     --glass-border: rgba(50, 50, 50, 0.6);
-    --glass-hover-border: rgba(255, 107, 0, 0.15);
+    --glass-hover-border: rgb(var(--accent-rgb) / 0.15);
     --glass-inset: rgba(255, 255, 255, 0.03);
     --glass-inset-hover: rgba(255, 255, 255, 0.05);
     --nav-bg: rgba(10, 10, 10, 0.7);
@@ -27,7 +29,7 @@
     --grid-line: rgba(255, 255, 255, 0.02);
     --scrollbar-track: #0a0a0a;
     --scrollbar-thumb: #333333;
-    --selection-bg: rgba(255, 107, 0, 0.3);
+    --selection-bg: rgb(var(--accent-rgb) / 0.3);
     --selection-text: #fff;
     --gradient-fade: rgba(0, 0, 0, 0.8);
     --name-base: #ffffff;
@@ -45,10 +47,12 @@
     --color-card-border: #e5e5e5;
     --color-strong-border: #d1d5db;
     --color-hover-border: #a3a3a3;
+    --color-accent: #0d9488;
+    --accent-rgb: 13 148 136;
 
     --glass-bg: rgba(255, 255, 255, 0.65);
     --glass-border: rgba(200, 200, 200, 0.6);
-    --glass-hover-border: rgba(255, 107, 0, 0.25);
+    --glass-hover-border: rgb(var(--accent-rgb) / 0.25);
     --glass-inset: rgba(255, 255, 255, 0.5);
     --glass-inset-hover: rgba(255, 255, 255, 0.7);
     --nav-bg: rgba(255, 255, 255, 0.75);
@@ -58,11 +62,11 @@
     --grid-line: rgba(0, 0, 0, 0.04);
     --scrollbar-track: #f5f5f0;
     --scrollbar-thumb: #cccccc;
-    --selection-bg: rgba(255, 107, 0, 0.2);
+    --selection-bg: rgb(var(--accent-rgb) / 0.2);
     --selection-text: #1a1a1a;
     --gradient-fade: rgba(255, 255, 255, 0.8);
     --name-base: #111827;
-    --pcb-trace: 200, 80, 0;
+    --pcb-trace: 13, 148, 136;
   }
 
   html {
@@ -97,7 +101,7 @@ body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b00;
+  background: var(--color-accent);
 }
 
 ::selection {
@@ -119,7 +123,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow:
-    0 0 0 1px rgba(255, 107, 0, 0.0),
+    0 0 0 1px rgb(var(--accent-rgb) / 0),
     0 4px 30px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 var(--glass-inset);
 }
@@ -133,15 +137,15 @@ body {
 .glass-panel:hover {
   border-color: var(--glass-hover-border);
   box-shadow:
-    0 0 0 1px rgba(255, 107, 0, 0.05),
+    0 0 0 1px rgb(var(--accent-rgb) / 0.05),
     0 8px 40px rgba(0, 0, 0, 0.4),
-    0 0 60px rgba(255, 107, 0, 0.03),
+    0 0 60px rgb(var(--accent-rgb) / 0.03),
     inset 0 1px 0 var(--glass-inset-hover);
 }
 
 .text-neon {
-  color: #ff6b00;
-  text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
+  color: var(--color-accent);
+  text-shadow: 0 0 5px rgb(var(--accent-rgb) / 0.5);
 }
 
 .section-header {
@@ -159,11 +163,11 @@ body {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, rgba(255, 107, 0, 0.2), transparent);
+  background: linear-gradient(90deg, rgb(var(--accent-rgb) / 0.2), transparent);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #ff6b00 50%, #00d4ff 100%);
+  background: linear-gradient(135deg, var(--color-heading) 0%, var(--color-accent) 50%, #00d4ff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -185,3 +189,18 @@ body {
 /* Hover variants for theme utilities */
 .hover\:text-primary:hover { color: var(--color-primary); }
 .hover\:border-hover-border:hover { border-color: var(--color-hover-border); }
+
+/* Accent color utilities — dynamic per theme */
+.text-accent { color: var(--color-accent); }
+.text-accent\/70 { color: rgb(var(--accent-rgb) / 0.7); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-accent\/5 { background-color: rgb(var(--accent-rgb) / 0.05); }
+.bg-accent\/10 { background-color: rgb(var(--accent-rgb) / 0.1); }
+.border-accent { border-color: var(--color-accent); }
+.border-accent\/20 { border-color: rgb(var(--accent-rgb) / 0.2); }
+.border-accent\/30 { border-color: rgb(var(--accent-rgb) / 0.3); }
+.border-accent\/40 { border-color: rgb(var(--accent-rgb) / 0.4); }
+.hover\:text-accent:hover { color: var(--color-accent); }
+.hover\:bg-accent\/5:hover { background-color: rgb(var(--accent-rgb) / 0.05); }
+.hover\:bg-accent\/10:hover { background-color: rgb(var(--accent-rgb) / 0.1); }
+.hover\:border-accent\/40:hover { border-color: rgb(var(--accent-rgb) / 0.4); }

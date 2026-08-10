@@ -6,7 +6,7 @@ const SysCompute = () => {
   const skillCategories = [
     {
       title: "Hardware & EDA",
-      color: "#ff6b00",
+      color: "var(--color-accent)",
       skills: ["KiCAD", "LTSpice", "PCB Design", "Oscilloscope / Logic Analyzer"],
     },
     {

@@ -32,7 +32,7 @@ const SysActuate = () => {
       description: "Developed an intelligent, real-time control architecture using attentive fuzzy logic capable of dynamically modulating membership functions and rule weights based on live system feedback. The system integrates a continuous self-tuning learning loop to improve stability, minimize steady-state error, and reduce overshooting under varying loads and environmental noise without requiring human intervention. This robust controller is highly scalable and optimized for deployment in autonomous robotics, drones, industrial automation, and modern cyber-physical applications.",
       contribution: "Designed and implemented the full adaptive fuzzy logic controller, including the self-tuning learning loop and dynamic membership function modulation.",
       patent: null,
-      color: "#ff6b00",
+      color: "var(--color-accent)",
     },
     {
       title: "FARMBOT",

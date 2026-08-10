@@ -71,7 +71,8 @@ const NavBar = () => {
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 w-full h-[2px] z-[200] bg-transparent">
         <motion.div
-          className="h-full bg-gradient-to-r from-accent to-accent-cyan"
+          className="h-full"
+          style={{ background: 'linear-gradient(to right, var(--color-accent), #00d4ff)' }}
           style={{ width: `${scrollProgress}%` }}
           transition={{ duration: 0.1 }}
         />
