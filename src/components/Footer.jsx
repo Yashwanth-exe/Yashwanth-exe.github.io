@@ -25,13 +25,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full border-t border-neutral-800/50 mt-16">
+    <footer className="w-full border-t border-card-border mt-16">
       <div className="max-w-5xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        
+
         {/* Left: System status */}
-        <div className="flex items-center gap-3 text-xs font-mono text-neutral-600 tracking-widest">
+        <div className="flex items-center gap-3 text-xs font-mono text-faint tracking-widest">
           <span className="inline-block w-2 h-2 rounded-full bg-green-500/70 animate-pulse-glow"></span>
-          <span>© {currentYear} YASHWANTH // SYS_ACTIVE</span>
+          <span>&copy; {currentYear} YASHWANTH // SYS_ACTIVE</span>
         </div>
 
         {/* Center: Links */}
@@ -42,7 +42,7 @@ const Footer = () => {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-600 hover:text-accent transition-colors duration-300 p-2"
+              className="text-faint hover:text-accent transition-colors duration-300 p-2"
               aria-label={link.name}
             >
               {link.icon}
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         {/* Right: Built with */}
-        <div className="text-[10px] font-mono text-neutral-700 tracking-widest">
+        <div className="text-[10px] font-mono text-ghost tracking-widest">
           BUILT WITH REACT + VITE
         </div>
       </div>

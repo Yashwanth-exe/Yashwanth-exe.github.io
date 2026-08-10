@@ -7,7 +7,6 @@ const SysId = () => {
   const [showTagline, setShowTagline] = useState(false);
   const fullText = "> Electronics and Communication Engineer";
 
-  // Live clock
   const [time, setTime] = useState('');
   useEffect(() => {
     const tick = () => {
@@ -50,7 +49,7 @@ const SysId = () => {
       `}} />
 
       {/* Status readout strip */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-6 text-[10px] font-mono text-neutral-600 tracking-widest">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-6 text-[10px] font-mono text-faint tracking-widest">
         <span className="flex items-center gap-1.5">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500/70 animate-pulse-glow"></span>
           STATUS: ONLINE
@@ -58,14 +57,14 @@ const SysId = () => {
         <span>CLK: {time}</span>
         <span>LOC: 13.34°N 74.79°E</span>
       </div>
-      
-      <h2 className="text-sm text-neutral-500 mb-4 z-10 tracking-widest font-mono">[ SYS_ID // ROOT_PROFILE ]</h2>
-      
+
+      <h2 className="text-sm text-subtle mb-4 z-10 tracking-widest font-mono">[ SYS_ID // ROOT_PROFILE ]</h2>
+
       {/* Name with gradient shimmer */}
-      <h1 
+      <h1
         className="text-5xl md:text-7xl font-bold tracking-wider mb-4 z-10 font-display"
         style={{
-          background: 'linear-gradient(90deg, #ffffff 0%, #ffffff 40%, #ff6b00 50%, #ffffff 60%, #ffffff 100%)',
+          background: `linear-gradient(90deg, var(--name-base) 0%, var(--name-base) 40%, #ff6b00 50%, var(--name-base) 60%, var(--name-base) 100%)`,
           backgroundSize: '200% auto',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -75,9 +74,9 @@ const SysId = () => {
       >
         YASHWANTH
       </h1>
-      
+
       {/* Typing subtitle */}
-      <p className="text-neutral-400 text-base md:text-lg h-6 z-10 font-mono">
+      <p className="text-muted text-base md:text-lg h-6 z-10 font-mono">
         {text}<span className="inline-block w-2.5 h-5 bg-accent ml-2 align-middle terminal-cursor"></span>
       </p>
 
@@ -86,7 +85,7 @@ const SysId = () => {
         initial={{ opacity: 0, y: 8 }}
         animate={showTagline ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="text-neutral-600 text-xs md:text-sm mt-3 z-10 font-mono tracking-wide"
+        className="text-faint text-xs md:text-sm mt-3 z-10 font-mono tracking-wide"
       >
         Bridging raw silicon and physical motion.
       </motion.p>
@@ -96,7 +95,7 @@ const SysId = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5, duration: 1 }}
-        className="absolute -bottom-16 left-0 flex items-center gap-2 text-neutral-600"
+        className="absolute -bottom-16 left-0 flex items-center gap-2 text-faint"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}

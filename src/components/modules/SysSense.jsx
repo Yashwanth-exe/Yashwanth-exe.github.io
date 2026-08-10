@@ -5,9 +5,9 @@ import ScrambleText from '../ScrambleText';
 
 const SysSense = () => {
   const experiences = [
-    { 
-      year: "SEP 2024 - CURR", 
-      role: "Electronics & Control Systems Researcher", 
+    {
+      year: "SEP 2024 - CURR",
+      role: "Electronics & Control Systems Researcher",
       org: "TEAM ROBOMANIPAL",
       loc: "Udupi, Karnataka, India",
     }
@@ -60,17 +60,17 @@ const SysSense = () => {
   };
 
   return (
-    <div className="flex flex-col h-full font-mono text-neutral-300">
+    <div className="flex flex-col h-full font-mono text-primary">
       <h2 className="section-header"><ScrambleText text="[ SYS_SENSE // TRAJECTORY_LOG ]" /></h2>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left Column: Experience and Education */}
         <div className="flex flex-col space-y-12">
-          
+
           {/* Experience Section */}
           <div>
-            <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Professional_Experience */" /></h3>
-            <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
+            <h3 className="text-heading font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Professional_Experience */" /></h3>
+            <div className="border-l-2 border-strong-border pl-6 space-y-8">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={i}
@@ -82,9 +82,9 @@ const SysSense = () => {
                 >
                   <div className="absolute -left-[31px] top-1.5 w-3 h-3 border-2 border-accent bg-bgd rounded-full"></div>
                   <span className="text-xs text-accent/70 block mb-1 tracking-widest">{exp.year}</span>
-                  <h4 className="text-lg font-bold text-white uppercase font-display">{exp.role}</h4>
-                  <p className="text-neutral-400 mt-1 tracking-widest text-sm">{exp.org}</p>
-                  <p className="text-neutral-500 text-xs mt-1">{exp.loc}</p>
+                  <h4 className="text-lg font-bold text-heading uppercase font-display">{exp.role}</h4>
+                  <p className="text-muted mt-1 tracking-widest text-sm">{exp.org}</p>
+                  <p className="text-subtle text-xs mt-1">{exp.loc}</p>
                 </motion.div>
               ))}
             </div>
@@ -92,8 +92,8 @@ const SysSense = () => {
 
           {/* Education Section */}
           <div>
-            <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Academic_Record */" /></h3>
-            <div className="border-l-2 border-neutral-700 pl-6 space-y-8">
+            <h3 className="text-heading font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Academic_Record */" /></h3>
+            <div className="border-l-2 border-strong-border pl-6 space-y-8">
               {education.map((edu, i) => (
                 <motion.div
                   key={i}
@@ -105,8 +105,8 @@ const SysSense = () => {
                 >
                   <div className="absolute -left-[31px] top-1.5 w-3 h-3 border-2 border-accent-cyan bg-bgd rounded-full"></div>
                   <span className="text-xs text-accent-cyan/70 block mb-1 tracking-widest">{edu.year}</span>
-                  <h4 className="text-lg font-bold text-white uppercase font-display">{edu.org}</h4>
-                  <p className="text-neutral-400 mt-1 tracking-widest text-sm block">{edu.role}</p>
+                  <h4 className="text-lg font-bold text-heading uppercase font-display">{edu.org}</h4>
+                  <p className="text-muted mt-1 tracking-widest text-sm block">{edu.role}</p>
                   {edu.gpa && (
                     <span className="inline-block mt-3 text-accent bg-accent/10 border border-accent/20 px-2 py-1 text-xs font-bold tracking-widest">
                       {edu.gpa}
@@ -121,7 +121,7 @@ const SysSense = () => {
 
         {/* Right Column: Achievements */}
         <div>
-          <h3 className="text-white font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Competitive_Records */" /></h3>
+          <h3 className="text-heading font-bold mb-6 tracking-widest text-xl uppercase font-display"><ScrambleText text="/* Competitive_Records */" /></h3>
           <div className="flex flex-col space-y-6">
             {achievements.map((ach, i) => (
               <motion.div
@@ -131,11 +131,12 @@ const SysSense = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="border border-neutral-800 p-6 bg-black/20 rounded-sm hover:border-neutral-600 transition-colors duration-300 cursor-default"
+                className="border border-card-border p-6 rounded-sm hover:border-hover-border transition-colors duration-300 cursor-default"
+                style={{ background: 'var(--card-bg)' }}
               >
-                <h4 className="text-lg font-bold text-white uppercase font-display">{ach.title}</h4>
-                <p className="text-neutral-500 text-xs tracking-widest uppercase mt-1 mb-4">{ach.subtitle}</p>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-4">{ach.desc}</p>
+                <h4 className="text-lg font-bold text-heading uppercase font-display">{ach.title}</h4>
+                <p className="text-subtle text-xs tracking-widest uppercase mt-1 mb-4">{ach.subtitle}</p>
+                <p className="text-muted text-sm leading-relaxed mb-4">{ach.desc}</p>
                 <div className="inline-flex items-center gap-2 text-accent bg-accent/10 border border-accent/20 px-3 py-1.5 text-xs font-bold tracking-widest uppercase">
                   <Trophy size={12} className="flex-shrink-0" />
                   {ach.status}

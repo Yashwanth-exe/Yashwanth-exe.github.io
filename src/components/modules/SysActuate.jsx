@@ -5,50 +5,62 @@ import ScrambleText from '../ScrambleText';
 
 const SysActuate = () => {
   const projects = [
-    { 
-      title: "BIDIRECTIONAL SIGNAL ISOLATION", 
-      subtitle: "Novel Optocoupler Circuit for I2C",
-      stack: ["PCB Design", "LTSpice", "Arduino"], 
-      description: "A novel circuit architecture enabling bidirectional electrical isolation of the I2C SDA line over a single channel using IR LEDs and a 6N137 optocoupler, eliminating the need for signal splitters, combiners, and dual optocoupler channels. The system operates across 1Hz–10kHz. A provisional patent has been filed through Astraea Research, MUTBI, Manipal.",
+    {
+      title: "BIDIRECTIONAL SIGNAL ISOLATION",
+      subtitle: "Novel Optocoupler Circuit for Half-Duplex Protocols",
+      stack: ["PCB Design", "LTSpice", "Arduino"],
+      description: "Co-invented a novel hardware system that achieves bidirectional signal isolation over a single communication channel using optical components and mode-switching logic. The design eliminates the need for dual optocouplers, signal splitters, and combiners, streamlining communication for half-duplex protocols such as I2C and UART. Operating reliably at frequencies up to 10 kHz with low-voltage logic (3.3V/5V), the system achieves up to 5,000 volts of galvanic isolation — a 2x improvement over standard solutions — while significantly reducing timing errors and hardware complexity for industrial and automotive applications.",
       contribution: "Sole inventor and designer for the novel electrical architecture. Designed, built, and validated the full hardware implementation.",
       patent: "202541060760",
+      patentStatus: "published",
       color: "#00d4ff",
     },
-    { 
-      title: "SLIP ESTIMATION", 
-      subtitle: "Terrain-Adaptive Localization for Differential Drive Robots",
-      stack: ["Octave/MATLAB", "PCB Design", "Controls"], 
-      description: "This project is a custom pipeline for real time wheel slip detection and slip compensated localization on a differential drive robot. The system uses a fuzzy logic classifier to identify the terrain types [Smooth to Rough] from encoder and IMU [BNO085] data. The output the fuzzy logic classifier is fed as the adaptive parameters to a Modified Kalman Filter for localization. Depending on the Roughness, Inclination, Change in acceleration the fuzzy rules are set on which the amount of trust for encoder or IMU is altered. A provisional patent has been filed through Astraea Research, MUTBI, Manipal.",
-      contribution: "Built the fuzzy logic terrain classification module from scratch, derived the initial EKF equations, derived the system state equations for familiarity with it. Made the initial testbench differential drive robot. Wrote the firmware code to get data from encoders and IMU on a teensy 4.1, wrote the code for the fuzzy system and tweaked the membership functions to get the terrain score in accordance to the actual terrain.",
+    {
+      title: "SLIP ESTIMATION",
+      subtitle: "Real-Time Slip Estimation for Mobile Robots",
+      stack: ["Octave/MATLAB", "PCB Design", "Controls", "IMU"],
+      description: "Developed a real-time slip estimation system to enhance the closed-loop motion control and navigation accuracy of skid-steer and differential drive mobile robots. The architecture continuously integrates and compares wheel encoder rotation data with motion and orientation data from an Inertial Measurement Unit (IMU) to accurately identify discrepancies indicative of wheel slip. By dynamically generating corrective motor control commands through an actuation interface, this solution effectively mitigates odometry drift and maintains reliable localization across varying surface tractions and dynamic operating environments.",
+      contribution: "Built the fuzzy logic terrain classification module from scratch, derived the initial EKF equations and system state equations. Made the initial testbench differential drive robot. Wrote the firmware code to get data from encoders and IMU on a Teensy 4.1, wrote the code for the fuzzy system and tweaked the membership functions to get the terrain score in accordance to the actual terrain.",
       patent: "202641011673",
+      patentStatus: "filed",
       color: "#a855f7",
     },
-    { 
-      title: "CHEST COMPRESSION BELT", 
-      subtitle: "Respiratory Gating System for Lung Cancer Therapy",
-      stack: ["PCB Design", "Octave/MATLAB", "Python"], 
-      description: "A joint project with KMC Hospital and faculty, aimed at developing a wearable chest belt that tracks patient breathing patterns during lung cancer radiotherapy. The belt collects real-time respiratory data and uses it to actuate an inflation/deflation mechanism that compensates for tumour motion caused by breathing — improving targeting precision during treatment. The ML layer for predictive pattern modeling is pending acquisition of stretch sensors and higher-resolution data.",
-      contribution: "Handled end-to-end sensor integration, embedded firmware development, and the closed-loop inflation/deflation control logic driving the actuation mechanism.",
+    {
+      title: "ADAPTIVE FUZZY LOGIC CONTROL",
+      subtitle: "Intelligent Self-Tuning Control Architecture",
+      stack: ["Controls", "Octave/MATLAB", "Python", "Embedded"],
+      description: "Developed an intelligent, real-time control architecture using attentive fuzzy logic capable of dynamically modulating membership functions and rule weights based on live system feedback. The system integrates a continuous self-tuning learning loop to improve stability, minimize steady-state error, and reduce overshooting under varying loads and environmental noise without requiring human intervention. This robust controller is highly scalable and optimized for deployment in autonomous robotics, drones, industrial automation, and modern cyber-physical applications.",
+      contribution: "Designed and implemented the full adaptive fuzzy logic controller, including the self-tuning learning loop and dynamic membership function modulation.",
       patent: null,
       color: "#ff6b00",
     },
-    { 
-      title: "FARMBOT V1", 
-      subtitle: "Agricultural Disease Detection Robot",
-      stack: ["PCB Design", "Machine Learning", "CAD", "Controls"], 
-      description: "An autonomous ground robot developed to assist in early plant disease detection and soil health monitoring. The system integrates a camera running a leaf segmentation model followed by a plant disease classification model, alongside a 7-in-1 NPK soil sensor to capture subsurface soil parameters. The prototype was field-tested at a nursery in Delhi, where NPK data was successfully logged and disease detection was validated on tomato and bell pepper plants.",
-      contribution: "Designed and fabricated the electronics and PCB, wrote the embedded firmware, and handled full integration of the Raspberry Pi with the sensor stack and camera pipeline.",
+    {
+      title: "FARMBOT",
+      subtitle: "Autonomous Agricultural Scouting Platform",
+      stack: ["PCB Design", "Machine Learning", "CAD", "Controls"],
+      description: "Engineered an autonomous, off-road robotic platform optimized for real-time disease and nutrient monitoring in high-value horticulture crops. FarmBot utilizes a distributed compute architecture (NVIDIA Jetson Orin Nano and Raspberry Pi Pico) and features a YOLOv11-Seg AI pipeline for pixel-level fruit ripeness estimation, occlusion handling, and early-stage leaf disease detection. The robot is equipped with a custom stepper-driven soil probe for localized subterranean NPK analysis, feeding real-world chemical and visual data into a Prescriptive Decision Engine and a live Digital Twin Dashboard to provide actionable, plant-level yield optimization directives.",
+      contribution: "Designed and fabricated the electronics and PCB, wrote the embedded firmware, and handled full integration of the compute stack with the sensor array and AI pipeline.",
       patent: null,
       color: "#22c55e",
     },
-    { 
-      title: "VISISONICS // SPEECH AI", 
-      subtitle: "Speech Intent & Emotion Recognition",
-      stack: ["Machine Learning", "Transformers", "LLMs", "Fine Tuning"], 
-      description: "The problem statement for this was to get emotion and intent + object data from speech. We build a model based on wav2vec2 which was then trained on CREMA-D dataset and on speech data collected from juniors and ourselves to finetune the emotion detection parameters. Got 95% accuracy for intent and object detection and 88% accuracy for emotion detection. Placed third in our track.",
-      contribution: "Trained the wav2vec2 models and wrote the model inference pipeline. Trained it on the cloud using 2x 5090s on runpod.",
+    {
+      title: "CROSS-ARCH FIRMWARE PORTING",
+      subtitle: "Automated Multi-Agent Firmware Migration",
+      stack: ["Embedded Systems", "AI Agents", "CMSIS-SVD", "Renode"],
+      description: "Co-created an automated, multi-agent framework designed to seamlessly migrate embedded firmware across heterogeneous microcontroller architectures. The system employs a deterministic orchestration of AI agents — including Analyst, Mapper, Translator, and Validator modules — combined with CMSIS-SVD semantic mapping to translate source code into a vendor-neutral Hardware Intermediate Representation (HIR). By integrating Renode simulation-in-the-loop with physical hardware validation, this pipeline ensures deterministic code generation, prevents hallucinated register references, and significantly reduces the time and cost associated with manual firmware rewrites.",
+      contribution: "Co-created the multi-agent orchestration framework, designed the Hardware Intermediate Representation, and integrated the Renode simulation-in-the-loop validation pipeline.",
       patent: null,
       color: "#f59e0b",
+    },
+    {
+      title: "DELPHI CRUCIBLE",
+      subtitle: "Agentic Portfolio Analysis Platform",
+      stack: ["Python", "FastAPI", "Next.js", "Redis"],
+      description: "Architected and deployed an automated agentic portfolio analysis platform orchestrating 4 specialized AI agents (PM, Bull, Bear, and Quant) for collaborative financial analysis and institutional-grade investment recommendations. Engineered a real-time orchestration layer using FastAPI, Redis, and Server-Sent Events (SSE) for low-latency agent communication, persistent state management, and fault-tolerant execution. Built a full-stack application with Next.js, TypeScript, Tailwind CSS, and Framer Motion, supporting stock analysis, 10-K PDF processing, portfolio tracking, and interactive financial dashboards.",
+      contribution: "Full-stack design and implementation — built the multi-agent orchestration backend, the real-time SSE pipeline, and the complete Next.js frontend with interactive dashboards.",
+      patent: null,
+      link: "https://delphicrucible-steel.vercel.app/",
+      color: "#e11d48",
     }
   ];
 
@@ -74,7 +86,8 @@ const SysActuate = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="border border-neutral-800 bg-black/20 rounded-sm hover:border-neutral-600 transition-all duration-300 overflow-hidden group"
+            className="border border-card-border rounded-sm hover:border-hover-border transition-all duration-300 overflow-hidden group"
+            style={{ background: 'var(--card-bg)' }}
           >
             {/* Color accent bar at top */}
             <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg, ${proj.color}, transparent)` }} />
@@ -83,16 +96,20 @@ const SysActuate = () => {
               {/* Header row */}
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
                 <div>
-                  <h3 className="text-white font-bold tracking-wider text-xl md:text-2xl font-display flex items-center gap-3">
+                  <h3 className="text-heading font-bold tracking-wider text-xl md:text-2xl font-display flex items-center gap-3">
                     <span className="inline-block w-2 h-2 rounded-full flex-shrink-0" style={{ background: proj.color, boxShadow: `0 0 8px ${proj.color}40` }}></span>
                     {proj.title}
                   </h3>
-                  <p className="text-neutral-400 tracking-wide text-sm md:text-base mt-1">{proj.subtitle}</p>
+                  <p className="text-muted tracking-wide text-sm md:text-base mt-1">{proj.subtitle}</p>
                 </div>
                 {proj.patent && (
-                  <div className="flex items-center gap-2 text-yellow-500 bg-yellow-500/10 border border-yellow-500/30 px-3 py-1.5 text-xs font-bold tracking-widest flex-shrink-0">
+                  <div className={`flex items-center gap-2 px-3 py-1.5 text-xs font-bold tracking-widest flex-shrink-0 border ${
+                    proj.patentStatus === 'published'
+                      ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30'
+                      : 'text-yellow-500 bg-yellow-500/10 border-yellow-500/30'
+                  }`}>
                     <FileText size={12} />
-                    PATENT: {proj.patent}
+                    {proj.patentStatus === 'published' ? 'PATENT PUBLISHED' : 'PATENT FILED'}: {proj.patent}
                   </div>
                 )}
               </div>
@@ -116,7 +133,7 @@ const SysActuate = () => {
 
               {/* Synopsis */}
               <div className="mb-4">
-                <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase"><ScrambleText text="/* Synopsis */" /></span>
+                <span className="text-xs text-subtle block mb-2 tracking-widest uppercase"><ScrambleText text="/* Synopsis */" /></span>
                 <AnimatePresence initial={false}>
                   <motion.div
                     initial={false}
@@ -124,11 +141,11 @@ const SysActuate = () => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden relative"
                   >
-                    <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
+                    <p className="text-muted text-sm md:text-base leading-relaxed">
                       {proj.description}
                     </p>
                     {expandedIndex !== idx && (
-                      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+                      <div className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none" style={{ background: 'linear-gradient(to top, var(--gradient-fade), transparent)' }} />
                     )}
                   </motion.div>
                 </AnimatePresence>
@@ -137,7 +154,7 @@ const SysActuate = () => {
               {/* Expand/Collapse toggle */}
               <button
                 onClick={() => toggleExpand(idx)}
-                className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-accent transition-colors tracking-widest mb-4"
+                className="flex items-center gap-1.5 text-xs text-subtle hover:text-accent transition-colors tracking-widest mb-4"
               >
                 {expandedIndex === idx ? (
                   <>COLLAPSE <ChevronUp size={14} /></>
@@ -156,10 +173,22 @@ const SysActuate = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <span className="text-xs text-neutral-500 block mb-2 tracking-widest uppercase"><ScrambleText text="/* Role_&_Execution */" /></span>
-                    <p className="text-neutral-400 text-sm md:text-base leading-relaxed border-l-2 pl-4 mb-2" style={{ borderColor: `${proj.color}40` }}>
+                    <span className="text-xs text-subtle block mb-2 tracking-widest uppercase"><ScrambleText text="/* Role_&_Execution */" /></span>
+                    <p className="text-muted text-sm md:text-base leading-relaxed border-l-2 pl-4 mb-2" style={{ borderColor: `${proj.color}40` }}>
                       {proj.contribution}
                     </p>
+                    {proj.link && (
+                      <a
+                        href={proj.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-3 text-xs font-bold tracking-widest px-3 py-1.5 border rounded-sm transition-colors hover:bg-white/5"
+                        style={{ color: proj.color, borderColor: `${proj.color}40` }}
+                      >
+                        <ExternalLink size={12} />
+                        LIVE DEMO
+                      </a>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

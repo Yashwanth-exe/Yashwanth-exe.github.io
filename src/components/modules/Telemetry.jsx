@@ -24,7 +24,7 @@ const Telemetry = () => {
 
   return (
     <div className="flex flex-col h-full justify-between">
-      <h2 className="text-sm text-neutral-500 tracking-widest mb-4 md:text-right md:mb-6 font-mono">[ TELEMETRY // CONTACT ]</h2>
+      <h2 className="text-sm text-subtle tracking-widest mb-4 md:text-right md:mb-6 font-mono">[ TELEMETRY // CONTACT ]</h2>
       <div className="flex flex-col md:items-end gap-3">
         {links.map((link) => (
           <a
@@ -32,7 +32,8 @@ const Telemetry = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-neutral-400 hover:text-accent px-4 py-2.5 transition-all duration-300 border border-neutral-800 hover:border-accent/40 hover:bg-accent/5 bg-black/40 rounded-sm group"
+            className="flex items-center gap-2 text-muted hover:text-accent px-4 py-2.5 transition-all duration-300 border border-card-border hover:border-accent/40 hover:bg-accent/5 rounded-sm group"
+            style={{ background: 'var(--card-bg-strong)' }}
           >
             <span className="group-hover:scale-110 transition-transform duration-200">{link.icon}</span>
             <span className="tracking-widest text-xs font-bold">{link.name}</span>

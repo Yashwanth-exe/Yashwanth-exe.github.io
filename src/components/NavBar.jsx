@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const navItems = [
   { id: 'hero', label: 'IDENT' },
@@ -11,6 +12,7 @@ const navItems = [
 ];
 
 const NavBar = () => {
+  const { theme, toggleTheme } = useTheme();
   const [activeSection, setActiveSection] = useState('hero');
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -26,7 +28,6 @@ const NavBar = () => {
       setScrollProgress(progress);
       setShowScrollTop(currentScrollY > 500);
 
-      // Auto-hide logic: hide on scroll down, show on scroll up
       if (currentScrollY > 100) {
         setIsVisible(currentScrollY < lastScrollY || currentScrollY < 200);
       } else {
@@ -39,7 +40,6 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Intersection Observer for active section tracking
   useEffect(() => {
     const observers = [];
     navItems.forEach(({ id }) => {
@@ -84,10 +84,10 @@ const NavBar = () => {
         transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="fixed top-3 left-1/2 -translate-x-1/2 z-[150] px-1 py-1 flex items-center gap-0.5 rounded-sm"
         style={{
-          background: 'rgba(10, 10, 10, 0.7)',
+          background: 'var(--nav-bg)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          border: '1px solid rgba(50, 50, 50, 0.5)',
+          border: '1px solid var(--nav-border)',
           boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
         }}
       >
@@ -98,7 +98,7 @@ const NavBar = () => {
             className={`relative px-4 py-2 text-xs font-mono tracking-widest transition-all duration-300 rounded-sm ${
               activeSection === id
                 ? 'text-accent'
-                : 'text-neutral-500 hover:text-neutral-300'
+                : 'text-subtle hover:text-primary'
             }`}
           >
             {label}
@@ -111,6 +111,15 @@ const NavBar = () => {
             )}
           </button>
         ))}
+
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          className="ml-1 px-2.5 py-2 text-subtle hover:text-accent transition-colors duration-300 rounded-sm"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+        </button>
       </motion.nav>
 
       {/* Scroll to Top */}
@@ -121,11 +130,11 @@ const NavBar = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="fixed bottom-8 right-8 z-[150] p-3 text-neutral-400 hover:text-accent transition-colors rounded-sm"
+            className="fixed bottom-8 right-8 z-[150] p-3 text-muted hover:text-accent transition-colors rounded-sm"
             style={{
-              background: 'rgba(10, 10, 10, 0.7)',
+              background: 'var(--nav-bg)',
               backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(50, 50, 50, 0.5)',
+              border: '1px solid var(--nav-border)',
             }}
             aria-label="Scroll to top"
           >

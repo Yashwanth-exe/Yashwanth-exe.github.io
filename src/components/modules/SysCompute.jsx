@@ -37,7 +37,7 @@ const SysCompute = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-full font-mono gap-12">
-      
+
       {/* Left Side: Categorized Skills Grid */}
       <div className="flex-1">
         <h2 className="section-header"><ScrambleText text="[ SYS_COMPUTE // HARDWARE_&_FIRMWARE ]" /></h2>
@@ -72,13 +72,14 @@ const SysCompute = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="flex items-center gap-3 py-2 px-3 border border-neutral-800/50 rounded-sm hover:border-neutral-700 transition-colors duration-200 bg-black/10 group"
+                    className="flex items-center gap-3 py-2 px-3 border border-card-border rounded-sm hover:border-hover-border transition-colors duration-200 group"
+                    style={{ background: 'var(--card-bg)' }}
                   >
                     <span
                       className="w-1 h-1 rounded-full flex-shrink-0 group-hover:scale-150 transition-transform"
                       style={{ background: cat.color }}
                     />
-                    <span className="text-sm text-neutral-300 tracking-wider font-medium">{skill}</span>
+                    <span className="text-sm text-primary tracking-wider font-medium">{skill}</span>
                   </motion.div>
                 ))}
               </div>
@@ -94,14 +95,18 @@ const SysCompute = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="border border-neutral-800 p-6 bg-black/20 text-center rounded-sm"
+          className="border border-card-border p-6 text-center rounded-sm"
+          style={{ background: 'var(--card-bg)' }}
         >
-          <span className="text-xs text-neutral-500 block mb-6 tracking-widest uppercase"><ScrambleText text="/* Offline_Archive_Access */" /></span>
-          <button className="border border-accent text-accent bg-black/40 px-6 py-4 text-sm hover:bg-accent/10 hover:text-accent transition-all duration-300 w-full flex justify-center gap-4 items-center font-bold tracking-widest rounded-sm group">
+          <span className="text-xs text-subtle block mb-6 tracking-widest uppercase"><ScrambleText text="/* Offline_Archive_Access */" /></span>
+          <button
+            className="border border-accent text-accent px-6 py-4 text-sm hover:bg-accent/10 hover:text-accent transition-all duration-300 w-full flex justify-center gap-4 items-center font-bold tracking-widest rounded-sm group"
+            style={{ background: 'var(--card-bg-strong)' }}
+          >
             <span>FETCH PDF_RECORD</span>
             <span className="group-hover:translate-y-0.5 transition-transform">⬇</span>
           </button>
-          <p className="text-[10px] text-neutral-600 mt-4 tracking-widest uppercase">link to raw .pdf requires backend hookup</p>
+          <p className="text-[10px] text-faint mt-4 tracking-widest uppercase">link to raw .pdf requires backend hookup</p>
         </motion.div>
       </div>
 

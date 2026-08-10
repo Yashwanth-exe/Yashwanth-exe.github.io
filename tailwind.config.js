@@ -9,9 +9,6 @@ export default {
       colors: {
         accent: "#ff6b00",
         "accent-cyan": "#00d4ff",
-        bgd: "#0a0a0a",
-        panel: "rgba(20, 20, 20, 0.75)",
-        border: "#333333",
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
