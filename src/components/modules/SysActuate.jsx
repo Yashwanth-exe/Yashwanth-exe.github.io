@@ -31,7 +31,8 @@ const SysActuate = () => {
       stack: ["Controls", "Octave/MATLAB", "Python", "Embedded"],
       description: "Developed an intelligent, real-time control architecture using attentive fuzzy logic capable of dynamically modulating membership functions and rule weights based on live system feedback. The system integrates a continuous self-tuning learning loop to improve stability, minimize steady-state error, and reduce overshooting under varying loads and environmental noise without requiring human intervention. This robust controller is highly scalable and optimized for deployment in autonomous robotics, drones, industrial automation, and modern cyber-physical applications.",
       contribution: "Designed and implemented the full adaptive fuzzy logic controller, including the self-tuning learning loop and dynamic membership function modulation.",
-      patent: null,
+      patent: "202541126466",
+      patentStatus: "filed",
       color: "var(--color-accent)",
     },
     {
@@ -49,7 +50,8 @@ const SysActuate = () => {
       stack: ["Embedded Systems", "AI Agents", "CMSIS-SVD", "Renode"],
       description: "Co-created an automated, multi-agent framework designed to seamlessly migrate embedded firmware across heterogeneous microcontroller architectures. The system employs a deterministic orchestration of AI agents — including Analyst, Mapper, Translator, and Validator modules — combined with CMSIS-SVD semantic mapping to translate source code into a vendor-neutral Hardware Intermediate Representation (HIR). By integrating Renode simulation-in-the-loop with physical hardware validation, this pipeline ensures deterministic code generation, prevents hallucinated register references, and significantly reduces the time and cost associated with manual firmware rewrites.",
       contribution: "Co-created the multi-agent orchestration framework, designed the Hardware Intermediate Representation, and integrated the Renode simulation-in-the-loop validation pipeline.",
-      patent: null,
+      patent: "202641069479",
+      patentStatus: "filed",
       color: "#f59e0b",
     },
     {

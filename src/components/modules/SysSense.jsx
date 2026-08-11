@@ -36,12 +36,6 @@ const SysSense = () => {
       status: "REGIONAL FINALISTS"
     },
     {
-      title: "VISISONICS Hackathon",
-      subtitle: "Speech Intent & Emotion Recognition",
-      desc: "Developed a Speech Intent & Emotion Recognition pipeline using Wav2vec2. Fine-tuned the model on the CREMA-D database, achieving an impressive 95% intent extraction accuracy and 88% emotion recognition.",
-      status: "3rd PLACE TRACK WINNER"
-    },
-    {
       title: "TECHNOXIAN 9.0",
       subtitle: "International Robotics Competition",
       desc: "Competed across multiple international robotics categories including Innovation Contest, Line Follower, Robo Hockey, and Maze Solver. Engineered custom autonomous navigation logic and rugged hardware integrations.",

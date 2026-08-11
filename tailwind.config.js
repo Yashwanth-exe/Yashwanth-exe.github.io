@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        accent: "#ff6b00",
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
         "accent-cyan": "#00d4ff",
       },
       fontFamily: {

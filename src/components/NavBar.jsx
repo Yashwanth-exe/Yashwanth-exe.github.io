@@ -72,18 +72,22 @@ const NavBar = () => {
       <div className="fixed top-0 left-0 w-full h-[2px] z-[200] bg-transparent">
         <motion.div
           className="h-full"
-          style={{ background: 'linear-gradient(to right, var(--color-accent), #00d4ff)' }}
-          style={{ width: `${scrollProgress}%` }}
+          style={{
+            background: theme === 'dark' 
+              ? 'linear-gradient(to right, var(--color-accent), #00d4ff)' 
+              : 'linear-gradient(to right, var(--color-accent), #0284c7)',
+            width: `${scrollProgress}%`,
+          }}
           transition={{ duration: 0.1 }}
         />
       </div>
 
-      {/* Floating Nav */}
+      {/* Breadcrumb Path Nav */}
       <motion.nav
         initial={{ y: -80 }}
         animate={{ y: isVisible ? 0 : -80 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed top-3 left-1/2 -translate-x-1/2 z-[150] px-1 py-1 flex items-center gap-0.5 rounded-sm"
+        className="fixed top-3 left-1/2 -translate-x-1/2 z-[150] px-3 py-1.5 flex items-center rounded-sm"
         style={{
           background: 'var(--nav-bg)',
           backdropFilter: 'blur(16px)',
@@ -92,31 +96,30 @@ const NavBar = () => {
           boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
         }}
       >
-        {navItems.map(({ id, label }) => (
-          <button
-            key={id}
-            onClick={() => scrollToSection(id)}
-            className={`relative px-4 py-2 text-xs font-mono tracking-widest transition-all duration-300 rounded-sm ${
-              activeSection === id
-                ? 'text-accent'
-                : 'text-subtle hover:text-primary'
-            }`}
-          >
-            {label}
-            {activeSection === id && (
-              <motion.div
-                layoutId="nav-indicator"
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-accent rounded-full"
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
+        {navItems.map(({ id, label }, index) => (
+          <React.Fragment key={id}>
+            <button
+              onClick={() => scrollToSection(id)}
+              className={`px-1.5 py-1.5 text-xs font-mono tracking-widest transition-all duration-300 ${
+                activeSection === id
+                  ? 'text-accent font-bold'
+                  : 'text-subtle hover:text-primary'
+              }`}
+            >
+              {label}
+            </button>
+            {index < navItems.length - 1 && (
+              <span className="text-ghost text-xs font-mono px-1.5">/</span>
             )}
-          </button>
+          </React.Fragment>
         ))}
+
+        <span className="text-ghost text-xs font-mono px-1.5">|</span>
 
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="ml-1 px-2.5 py-2 text-subtle hover:text-accent transition-colors duration-300 rounded-sm"
+          className="px-1.5 py-1.5 text-subtle hover:text-accent transition-colors duration-300"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
