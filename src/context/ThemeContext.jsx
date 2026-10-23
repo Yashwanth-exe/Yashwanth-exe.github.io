@@ -5,15 +5,17 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
+  // Light is the default; only an explicit toggle is remembered
   const [theme, setTheme] = useState(() => {
-    const stored = localStorage.getItem('theme');
-    if (stored) return stored;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    try {
+      return localStorage.getItem('theme-pref') === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
 
     const style = getComputedStyle(document.documentElement);
     document.body.style.backgroundColor = style.getPropertyValue('--color-bg').trim();
@@ -25,7 +27,11 @@ export const ThemeProvider = ({ children }) => {
     document.body.style.display = '';
   }, [theme]);
 
-  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+  const toggleTheme = () => setTheme(t => {
+    const next = t === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('theme-pref', next); } catch { /* storage unavailable */ }
+    return next;
+  });
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
